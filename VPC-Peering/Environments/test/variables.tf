@@ -30,7 +30,7 @@ variable "source_cidr" {
 
 variable "source_pub_sub_cidr" {
   description = "CIDR block for the public subnet"
-  type        = string 
+  type        = string
 }
 
 variable "source_subnet1_cidr" {
@@ -135,5 +135,5 @@ variable "dest_rt_name" {
 
 variable "dest_pub_sub_cidr" {
   description = "CIDR block for the public subnet"
-  type        = string 
+  type        = string
 }

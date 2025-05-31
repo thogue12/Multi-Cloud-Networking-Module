@@ -166,7 +166,7 @@ resource "aws_security_group_rule" "ssh_dest" {
   to_port           = 22
   protocol          = "tcp"
   security_group_id = aws_security_group.dest_sg.id
-  cidr_blocks       = [var.source_cidr] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
+  cidr_blocks       = ["0.0.0.0/0"] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
 
   description = "Allow ICMP from source VPC"
   
@@ -175,8 +175,8 @@ resource "aws_security_group_rule" "ssh_dest" {
 resource "aws_security_group_rule" "icmp_dest" {
   provider = aws.us-west
   type              = "ingress"
-  from_port         = 0
-  to_port           = 0
+  from_port         = -1
+  to_port           = -1
   protocol          = "icmp"
   security_group_id = aws_security_group.dest_sg.id
   cidr_blocks       = [var.source_cidr] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
