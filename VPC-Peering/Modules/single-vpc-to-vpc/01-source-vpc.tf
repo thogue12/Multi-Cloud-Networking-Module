@@ -80,6 +80,11 @@ resource "aws_route_table" "public_source_rt" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.this_igw.id
   }
+
+    route {
+    cidr_block = var.dest_cidr
+    vpc_peering_connection_id = aws_vpc_peering_connection.this_connection.id
+  }
   tags = {
     Name = "${var.source_vpc_name}-public-route-table"
   }
@@ -159,7 +164,7 @@ resource "aws_security_group_rule" "icmp_source" {
   to_port           = 0
   protocol          = "icmp"
   security_group_id = aws_security_group.source_sg.id
-  cidr_blocks       = ["0.0.0.0/0"] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
+  cidr_blocks       = [var.dest_cidr] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
   
 
   description = "Allow ICMP from destination VPC"
@@ -173,7 +178,7 @@ resource "aws_security_group_rule" "ssh_source" {
   to_port           = 22
   protocol          = "tcp"
   security_group_id = aws_security_group.source_sg.id
-  cidr_blocks       = ["0.0.0.0/0"] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
+  cidr_blocks       = [var.dest_cidr] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
 
   description = "Allow ICMP from destination VPC"
   
