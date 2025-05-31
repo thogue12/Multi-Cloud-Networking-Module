@@ -7,6 +7,10 @@ on:
         description: 'Path to the Terraform module'
         required: true
         default: 'VPC-Peering/Modules/single-vpc-to-vpc'
+      aws_region:
+        description: 'AWS Region for the Terraform module'
+        required: true
+        default: 'us-east-1'
 
 jobs:
   terraform-cleanup:
