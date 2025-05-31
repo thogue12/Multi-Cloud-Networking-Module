@@ -26,7 +26,8 @@ jobs:
 
     env:
       TFLINT_VERSION: '0.46.1'  
-      TFSEC_VERSION: '1.28.1'   
+      TFSEC_VERSION: '1.28.1'  
+      AWS_REGION: ${{ github.event.inputs.aws_region }} 
 
     steps:
     - name: 'Checkout GitHub repository'
