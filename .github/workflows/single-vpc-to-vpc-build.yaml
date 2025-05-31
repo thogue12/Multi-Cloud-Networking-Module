@@ -5,6 +5,11 @@ name: Terraform CI/CD
 on:
   workflow_dispatch:
     inputs:
+      environment:
+        description: "Select environrment"
+        required: true
+        default: "test"
+        type: environment
       module_path:
         description: 'Path to the Terraform module'
         required: true
