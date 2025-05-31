@@ -61,13 +61,6 @@ jobs:
         unzip tflint.zip -d /usr/local/bin/
         tflint --version
 
-    # - name: 'Install tfsec'
-    #   run: |
-    #     curl -sLo tfsec https://github.com/aquasecurity/tfsec/releases/download/v${{ env.TFSEC_VERSION }}/tfsec-linux-amd64
-    #     chmod +x tfsec
-    #     mv tfsec /usr/local/bin/
-    #     tfsec --version
-      
     - name: 'Terraform Init'
       run: terraform init
 
@@ -87,6 +80,12 @@ jobs:
       with:
           sarif_file: tfsec.sarif
 
+    - name: Run Checkov
+      uses: bridgecrewio/checkov-action@v12
+      with:
+          # This will add both a CLI output to the console and create a results.sarif file
+          output_format: cli,sarif
+          output_file_path: console,results.sarif
     - name: 'Terraform Plan'
       run: terraform plan -out=tfplan
 
