@@ -11,7 +11,7 @@ on:
       module_path:
         description: 'Path to the Terraform module'
         required: true
-        default: 'VPC-Peering/Modules/single-vpc-to-vpc'
+        default: 'VPC-Peering'
       aws_region:
         description: 'AWS Region for the Terraform module'
         required: true

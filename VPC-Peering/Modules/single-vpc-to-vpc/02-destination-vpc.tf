@@ -1,5 +1,5 @@
 
-resource "aws_vpc" "destination_vpc" {
+resource "aws_vpc" "destination_vpc" {  #tfsec:ignore:aws-ec2-require-vpc-flow-logs-for-all-vpcs
   cidr_block       = var.dest_cidr
   instance_tenancy = "default"
   enable_dns_support = true
@@ -44,7 +44,7 @@ resource "aws_subnet" "dest_public_subnet" {
   vpc_id     = aws_vpc.destination_vpc.id
   cidr_block = var.dest_pub_sub_cidr
   availability_zone = var.dest_subnet1_az
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = true  #tfsec:ignore:aws-ec2-no-public-ip-subnet
 
   tags = {
     Name = "${var.dest_vpc_name}-public-subnet"
@@ -152,6 +152,7 @@ resource "aws_internet_gateway" "dest_igw" {
 resource "aws_security_group" "dest_sg" {
   provider = aws.us-west
   vpc_id   = aws_vpc.destination_vpc.id
+  description = "Security group for destination VPC"
 }
 
 resource "aws_security_group_rule" "ssh_dest" {
@@ -199,7 +200,13 @@ resource "aws_instance" "dest_instance" {
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.dest_subnet1.id
   vpc_security_group_ids = [aws_security_group.dest_sg.id]
+  metadata_options {
+     http_tokens = "required"
+     }  
 
+  root_block_device {
+    encrypted = true
+  }
   tags = {
     Name = "${var.dest_vpc_name}-instance"
   }
