@@ -42,3 +42,6 @@ Environments Directory:
     - Create a DevSecOps workflow:
         - Inlcude Terraform Linting
         - Terraform Security
+        - Terraform init, plan, apply and destroy
+    - I want to have a github actions workflwo dedicated to each module I create
+    - 

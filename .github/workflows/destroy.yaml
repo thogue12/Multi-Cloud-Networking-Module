@@ -2,11 +2,19 @@ name: Terraform Cleanup
 
 on:
   workflow_dispatch:
+    inputs:
+      module_path:
+        description: 'Path to the Terraform module'
+        required: true
+        default: 'VPC-Peering/Modules/single-vpc-to-vpc'
 
 jobs:
   terraform-cleanup:
     name: 'Post Apply Cleanup'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.event.inputs.module_path }}
 
     env:
       TF_VERSION: '1.4.0'
