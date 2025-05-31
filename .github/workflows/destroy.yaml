@@ -26,7 +26,11 @@ jobs:
         working-directory: ${{ github.event.inputs.module_path }}
 
     env:
-      TF_VERSION: '1.4.0'
+      TFLINT_VERSION: '0.46.1'  
+      TFSEC_VERSION: '1.28.1' 
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+      AWS_REGION: ${{ github.event.inputs.aws_region }} 
 
     steps:
     - name: 'Checkout GitHub repository'
