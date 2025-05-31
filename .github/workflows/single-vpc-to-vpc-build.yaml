@@ -18,9 +18,11 @@ on:
         description: 'AWS Region for the Terraform module'
         required: true
         default: 'us-east-1'
+
 permissions:
+  actions: read
   contents: read
-  
+  security-events: write
 jobs:
   terraform:
     name: 'Terraform Lint, Security Check, and Deploy'
@@ -30,7 +32,7 @@ jobs:
         working-directory: ${{ github.event.inputs.module_path }}
 
     env:
-      TF_VERSION: 'latest'
+ 
       TFLINT_VERSION: '0.46.1'  
       TFSEC_VERSION: '1.28.1' 
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -51,7 +53,7 @@ jobs:
     - name: 'Set up Terraform'
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: ${{ env.TF_VERSION }}
+        terraform_version: 'latest'
 
     - name: 'Install TFLint'
       run: |
@@ -59,12 +61,12 @@ jobs:
         unzip tflint.zip -d /usr/local/bin/
         tflint --version
 
-    - name: 'Install tfsec'
-      run: |
-        curl -sLo tfsec https://github.com/aquasecurity/tfsec/releases/download/v${{ env.TFSEC_VERSION }}/tfsec-linux-amd64
-        chmod +x tfsec
-        mv tfsec /usr/local/bin/
-        tfsec --version
+    # - name: 'Install tfsec'
+    #   run: |
+    #     curl -sLo tfsec https://github.com/aquasecurity/tfsec/releases/download/v${{ env.TFSEC_VERSION }}/tfsec-linux-amd64
+    #     chmod +x tfsec
+    #     mv tfsec /usr/local/bin/
+    #     tfsec --version
       
     - name: 'Terraform Init'
       run: terraform init
@@ -81,7 +83,9 @@ jobs:
         tflint
 
     - name: 'tfsec'
-      run: tfsec .
+      uses: aquasecurity/tfsec-sarif-action@21ded20e8ca120cd9d3d6ab04ef746477542a608
+      with:
+          sarif_file: tfsec.sarif
 
     - name: 'Terraform Plan'
       run: terraform plan -out=tfplan

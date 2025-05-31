@@ -157,24 +157,6 @@ resource "aws_security_group" "source_sg" {
   description = "Security group for source VPC"
 }
 
-
-# resource "aws_vpc_security_group_ingress_rule" "icmp_source" {
-#   security_group_id = aws_security_group.source_sg.id
-#   provider = aws.us-east
-#   cidr_ipv4   = ["0.0.0.0/0"] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
-#   from_port   = -1
-#   ip_protocol = "tcp"
-#   to_port     = -1
-# }
-
-# resource "aws_vpc_security_group_ingress_rule" "example" {
-#   security_group_id = aws_security_group.example.id
-
-#   cidr_ipv4   = "10.0.0.0/8"
-#   from_port   = 80
-#   ip_protocol = "tcp"
-#   to_port     = 80
-# }
 resource "aws_security_group_rule" "icmp_source" {
   provider = aws.us-east
   type              = "ingress"

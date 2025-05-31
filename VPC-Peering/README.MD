@@ -31,6 +31,10 @@ Environments Directory:
     - NAT Gateway
     - Internet Gateway(maybe)
     - EC2 instance
+    - Security Group:
+        - allow ICMP for Ping: make sure to have -1 for the ports
+            - cidr block [ should be the vpc youre trying to reach]
+        - allow SSH so you can get into the VM
 
     - Peering Connection:
         - The oposite VPC should have a similar or same setup with different CIDRs and DIFFERENT REGIONS!!
