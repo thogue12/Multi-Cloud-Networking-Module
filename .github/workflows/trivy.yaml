@@ -17,6 +17,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+        # Install Trivy
+      - name: Install Trivy
+        run: |
+          curl -sSfL https://aquasecurity.github.io/trivy/releases/latest/trivy_$(uname -s)_$(uname -m).tar.gz | tar xz -C /usr/local/bin/
+
       - name: Set up Trivy
         run: |
           trivy config --update
