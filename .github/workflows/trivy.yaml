@@ -25,7 +25,7 @@ jobs:
           hide-progress: true
           format: 'table'
           output: 'trivy-results.txt'
-          exit-code: '0'
+          exit-code: '1'
           severity: 'CRITICAL'
 
       - name: Show IaC scan results in log
