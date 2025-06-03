@@ -12,7 +12,7 @@ resource "aws_security_group_rule" "icmp_source" {
   to_port           = -1
   protocol          = "icmp"
   security_group_id = aws_security_group.source_sg.id
-  cidr_blocks       = [var.dest_cidr] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
+  cidr_blocks       = [var.dest_cidr] 
   
 
   description = "Allow ICMP from destination VPC"
@@ -26,7 +26,7 @@ resource "aws_vpc_security_group_egress_rule" "source_egress" {
   security_group_id = aws_security_group.source_sg.id
   provider          = aws.us-east
 
-  cidr_ipv4   = "0.0.0.0/0" #tfsec:ignore:aws-vpc-no-public-ingress-sgr
+  cidr_ipv4   = "0.0.0.0/0" #tfsec:ignore:aws-vpc-no-public-egress-sgr
   ip_protocol = "-1"
 
 }
@@ -49,7 +49,7 @@ resource "aws_security_group_rule" "icmp_dest" {
   to_port           = -1
   protocol          = "icmp"
   security_group_id = aws_security_group.dest_sg.id
-  cidr_blocks       = [var.source_cidr] #tfsec:ignore:aws-vpc-no-public-ingress-sgr
+  cidr_blocks       = [var.source_cidr] 
 
   description = "Allow ICMP from source VPC"
   
@@ -62,7 +62,7 @@ resource "aws_vpc_security_group_egress_rule" "dest_egress" {
   security_group_id = aws_security_group.dest_sg.id
   provider = aws.us-west
 
-  cidr_ipv4   = "0.0.0.0/0" #tfsec:ignore:aws-vpc-no-public-ingress-sgr
+  cidr_ipv4   = "0.0.0.0/0"  #tfsec:ignore:aws-vpc-no-public-egress-sgr
   ip_protocol = "-1"
 
 
