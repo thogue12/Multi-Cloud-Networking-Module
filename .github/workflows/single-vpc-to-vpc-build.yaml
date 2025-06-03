@@ -80,12 +80,6 @@ jobs:
       with:
           sarif_file: tfsec.sarif
 
-    # - name: Run Checkov
-    #   uses: bridgecrewio/checkov-action@v12
-    #   with:
-    #       # This will add both a CLI output to the console and create a results.sarif file
-    #       output_format: cli,sarif
-    #       output_file_path: console,results.sarif
     - name: 'Terraform Plan'
       run: terraform plan -out=tfplan
 
