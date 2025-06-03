@@ -22,15 +22,17 @@ Environments Directory:
     - VPC:
         - VPC CIDR
         - 2 Private Subnets
-        - 1 Public Subnet (for Internet Gateway--- OR LEARN HOW TO USE ENDPOINTS FOR SECURITY)
+        - 1 Public Subnet (for Internet Gateway--- OR LEARN HOW TO USE SSM for better security
+        using SSM will eliminate the need for, publicIPs, and NAT GW)
         - 2 different AZs
     - Route Table
         - Route to the peered VPC(s)
         - Subnet Associations
         - NAT gateway association
-    - NAT Gateway
+    - NAT Gateway (maybe)
     - Internet Gateway(maybe)
     - EC2 instance
+        - Get an EC2 instance with SSM agent pre-installed
     - Security Group:
         - allow ICMP for Ping: make sure to have -1 for the ports
             - cidr block [ should be the vpc youre trying to reach]
@@ -40,12 +42,28 @@ Environments Directory:
         - The oposite VPC should have a similar or same setup with different CIDRs and DIFFERENT REGIONS!!
         - Ensure this VPC also has a peering connection to the source VPC
             - Check the Route Table
+    
+    - IAM:
+        - Create a IAM policy for SSM access
+        - Create a role
+            - attach the IAM policy to that role
+        - Create a role document
+        - Create a role profile to reference
+
+    - SSM:
+        - VPC endpoint for SSM
+        - SSM messages
+        - ec2 messages
 
 ## -- GitHub Actions:
     - Create a workflow that builds the AWS Resources with Terraform
     - Create a DevSecOps workflow:
-        - Inlcude Terraform Linting
-        - Terraform Security
-        - Terraform init, plan, apply and destroy
+        - Terraform validate ---------- Syntax and basic config validation
+        - Terraform plan   ------------ Shows the execution plan and helps catch issues early
+        - Terraform fmt    ------------ Enforces standard formatting
+        - Tflint ---------------------- Linting and deeper static analysis
+        - Tfsec   --------------------- Terraform security checks (deep, provider-aware)
+        - Trivy IaC ------------------- IaC misconfig checks
+        
     - I want to have a github actions workflwo dedicated to each module I create
     - 

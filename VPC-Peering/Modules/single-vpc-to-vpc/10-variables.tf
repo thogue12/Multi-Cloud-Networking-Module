@@ -138,3 +138,9 @@ variable "dest_rt_name" {
   type        = string  
   
 }
+variable "map_public_ip_on_launch" {
+  description = "Whether to map public IPs on launch for subnets, defaults to false"
+  type        = bool
+  default     = false
+  
+}

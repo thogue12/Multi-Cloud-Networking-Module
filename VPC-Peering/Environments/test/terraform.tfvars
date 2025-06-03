@@ -12,6 +12,7 @@ source_subnet2_az   = "us-east-1b"
 source_rt_name      = "source-route-table"
 source_pub_sub_cidr = "10.0.2.0/24"
 
+
 ### ------ Destination VPC Variables ------ ###
 dest_region       = "us-west-2"
 dest_cidr         = "10.10.0.0/16"
@@ -24,3 +25,4 @@ dest_subnet2_cidr = "10.10.1.0/24"
 dest_subnet2_az   = "us-west-2b"
 dest_rt_name      = "destination-route-table"
 dest_pub_sub_cidr = "10.10.2.0/24"
+map_public_ip_on_launch = false

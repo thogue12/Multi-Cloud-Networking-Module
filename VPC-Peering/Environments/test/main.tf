@@ -34,5 +34,6 @@ module "single-vpc-to-vpc" {
   dest_subnet2_cidr = var.dest_subnet2_cidr
   dest_subnet2_az   = var.dest_subnet2_az
   dest_rt_name      = "${var.dest_rt_name}-${var.environment}"
+  map_public_ip_on_launch = var.map_public_ip_on_launch
 
 }
