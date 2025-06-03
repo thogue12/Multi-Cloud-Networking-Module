@@ -43,7 +43,9 @@ jobs:
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@0.28.0
         with:
-          scan-type: 'config'
+          scan-type: 'iac'
+          iac-type: 'terraform'
+          iac-policy: ''
           hide-progress: false
           format: 'sarif'
           output: 'trivy-results.sarif'  # make sure to use the same output file name
