@@ -17,19 +17,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Print Trivy results (debug only)
-        run: cat trivy-results.sarif
+
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: 'config'
           hide-progress: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
+          format: 'table'
+          output: 'trivy-results.txt'
           exit-code: '1'
           severity: 'CRITICAL'
 
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: 'trivy-results.sarif'
+      - name: Show IaC scan results in log
+        run: cat trivy-results.txt
+
+      # - name: Upload Trivy scan results to GitHub Security tab
+      #   uses: github/codeql-action/upload-sarif@v3
+      #   with:
+      #     sarif_file: 'trivy-results.txt'
