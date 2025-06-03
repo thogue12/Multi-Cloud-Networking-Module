@@ -9,31 +9,35 @@ module "single-vpc-to-vpc" {
   }
 
   ### Source VPC Variables ###
-  environment         = var.environment
-  source_region       = var.source_region
-  source_vpc_name     = "${var.source_vpc_name}-${var.environment}"
-  source_cidr         = var.source_cidr
-  source_subnet1_cidr = var.source_subnet1_cidr
-  source_subnet1_name = "${var.source_subnet1_name}-${var.environment}"
-  source_subnet1_az   = var.source_subnet1_az
-  source_subnet2_name = "${var.source_subnet2_name}-${var.environment}"
-  source_subnet2_cidr = var.source_subnet2_cidr
-  source_subnet2_az   = var.source_subnet2_az
-  source_rt_name      = "${var.source_rt_name}-${var.environment}"
-  source_pub_sub_cidr = var.source_pub_sub_cidr
+  environment                = var.environment
+  requestor_vpc_region       = var.requestor_vpc_region
+  requester_vpc_name         = "${var.requester_vpc_name}-${var.environment}"
+  requester_vpc_cidr         = var.requester_vpc_cidr
+  requester_vpc_pub_sub_cidr = var.requester_vpc_pub_sub_cidr
+  requester_subnet1_cidr     = var.requester_subnet1_cidr
+  requester_subnet1_name     = "${var.requester_subnet1_name}-${var.environment}"
+  requester_subnet1_az       = var.requester_subnet1_az
+  requester_subnet2_name     = "${var.requester_subnet2_name}-${var.environment}"
+  requester_subnet2_cidr     = var.requester_subnet2_cidr
+  requester_subnet2_az       = var.requester_subnet2_az
+  requester_rt_name          = "${var.requester_rt_name}-${var.environment}"
+  requester_ami_id           = var.requester_ami_id
+  instance_type              = var.instance_type
+
 
   ### Destination VPC Variables ###
-  dest_region       = var.dest_region
-  dest_vpc_name     = "${var.dest_vpc_name}-${var.environment}"
-  dest_cidr         = var.dest_cidr
-  dest_pub_sub_cidr = var.dest_pub_sub_cidr
-  dest_subnet1_cidr = var.dest_subnet1_cidr
-  dest_subnet1_name = "${var.dest_subnet1_name}-${var.environment}"
-  dest_subnet1_az   = var.dest_subnet1_az
-  dest_subnet2_name = "${var.dest_subnet2_name}-${var.environment}"
-  dest_subnet2_cidr = var.dest_subnet2_cidr
-  dest_subnet2_az   = var.dest_subnet2_az
-  dest_rt_name      = "${var.dest_rt_name}-${var.environment}"
+  acceptor_region         = var.acceptor_region
+  acceptor_vpc_name       = "${var.acceptor_vpc_name}-${var.environment}"
+  acceptor_cidr           = var.acceptor_cidr
+  acceptor_subnet1_cidr   = var.acceptor_subnet1_cidr
+  acceptor_subnet1_name   = "${var.acceptor_subnet1_name}-${var.environment}"
+  acceptor_subnet1_az     = var.acceptor_subnet1_az
+  acceptor_subnet2_name   = "${var.acceptor_subnet2_name}-${var.environment}"
+  acceptor_subnet2_cidr   = var.acceptor_subnet2_cidr
+  acceptor_subnet2_az     = var.acceptor_subnet2_az
+  acceptor_rt_name        = "${var.acceptor_rt_name}-${var.environment}"
+  acceptor_pub_sub_cidr   = var.acceptor_pub_sub_cidr
+  acceptor_ami_id         = var.acceptor_ami_id
   map_public_ip_on_launch = var.map_public_ip_on_launch
 
 }
