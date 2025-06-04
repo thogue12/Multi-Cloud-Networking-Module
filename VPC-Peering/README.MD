@@ -1,20 +1,23 @@
 ## Point of this project 
+##  Overview
 
-I want to create for myself an all encompassing Multi Cloud Networking Module
-   this one will act as project number 1 VPC Peering:
+This project enables secure VPC peering between AWS regions using modular Terraform code. It includes:
 
-## Setup
+- Reusable modules for VPC creation, peering, and security group management
+- Environment-specific configurations (dev, test, prod) with isolated state files
+- GitHub Actions workflow implementing a DevSecOps pipeline with:
+  - Terraform formatting, linting, and validation
+  - `tfsec` and `Trivy` for static security analysis
+  - `tflint` for best practices
+  - Plan/apply with GitHub environment approvals
+- SSM-based private connectivity testing
 
-Environments Directory:
-    - Dev
-    - Test
-    - Prod
--- Each ENV will have its own terraform backend for state isolation
--- Each ENV will there own terrafrom.tfvars file and providers file
+Built to demonstrate infrastructure-as-code principles, secure automation, and scalable environment design in a multi-region setup.
+
 
 ## Modules Directory:
     - Module 1 = A single VPC Peering with one other VPC
-    - Module 2 = 3 VPCs Peering with 3 other VPCs
+
 
 ## Important Note: To enable private IPv4 traffic between instances in peered VPCs, you must add a route to the route tables associated with the subnets for both instances. The route destination is the CIDR block (or portion of the CIDR block) of the peer VPC and the target is the ID of the VPC peering connection. ## 
 
@@ -65,6 +68,11 @@ Environments Directory:
         - Tfsec   --------------------- Terraform security checks (deep, provider-aware)
         - Trivy IaC ------------------- IaC misconfig checks
 
-    - I want to have a github actions workflwo dedicated to each module I create
 
-## 
+## How to use this module:
+
+### Prerequisites
+    - Terraform 1.11.0+
+    - AWS CLI configured
+    - GitHub repository secrets set for GitHub Actions (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, etc.)
+
