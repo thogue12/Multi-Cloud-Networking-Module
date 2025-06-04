@@ -65,10 +65,4 @@ Built to demonstrate infrastructure-as-code principles, secure automation, and s
         - Trivy IaC ------------------- IaC misconfig checks
 
 
-## How to use this module:
-
-### Prerequisites
-- Terraform 1.11.0+
-- AWS CLI configured
-- GitHub repository secrets set for GitHub Actions (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, etc.)
 
