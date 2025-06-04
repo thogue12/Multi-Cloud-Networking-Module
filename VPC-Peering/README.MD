@@ -20,7 +20,7 @@ Built to demonstrate infrastructure-as-code principles, secure automation, and s
 
 
 ## Important Note:
-- To enable private IPv4 traffic between instances in peered VPCs, you must add a route to the route tables associated with the subnets for both instances. The route destination is the CIDR block (or portion of the CIDR block) of the peer VPC and the target is the ID of the VPC peering connection. 
+** To enable private IPv4 traffic between instances in peered VPCs, you must add a route to the route tables associated with the subnets for both instances. The route destination is the CIDR block (or portion of the CIDR block) of the peer VPC and the target is the ID of the VPC peering connection. 
 
 ##  Within each module:
     - VPC:
