@@ -53,10 +53,6 @@ Built to demonstrate infrastructure-as-code principles, secure automation, and s
         - Create a role document
         - Create a role profile to reference
 
-    - SSM:
-        - VPC endpoint for SSM
-        - SSM messages
-        - ec2 messages
 
 ##  GitHub Actions:
     - Create a workflow that builds the AWS Resources with Terraform
@@ -72,7 +68,7 @@ Built to demonstrate infrastructure-as-code principles, secure automation, and s
 ## How to use this module:
 
 ### Prerequisites
-    - Terraform 1.11.0+
-    - AWS CLI configured
-    - GitHub repository secrets set for GitHub Actions (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, etc.)
+- Terraform 1.11.0+
+- AWS CLI configured
+- GitHub repository secrets set for GitHub Actions (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, etc.)
 
