@@ -16,17 +16,17 @@ Built to demonstrate infrastructure-as-code principles, secure automation, and s
 
 
 ## Modules Directory:
-    - Module 1 = A single VPC Peering with one other VPC
+    - Module 1 = Multi region VPC peering between 1 VPC to another VPC
 
 
-## Important Note: To enable private IPv4 traffic between instances in peered VPCs, you must add a route to the route tables associated with the subnets for both instances. The route destination is the CIDR block (or portion of the CIDR block) of the peer VPC and the target is the ID of the VPC peering connection. ## 
+## Important Note:
+    - To enable private IPv4 traffic between instances in peered VPCs, you must add a route to the route tables associated with the subnets for both instances. The route destination is the CIDR block (or portion of the CIDR block) of the peer VPC and the target is the ID of the VPC peering connection. ## 
 
 ##  Within each module:
     - VPC:
         - VPC CIDR
         - 2 Private Subnets
-        - 1 Public Subnet (for Internet Gateway--- OR LEARN HOW TO USE SSM for better security
-        using SSM will eliminate the need for, publicIPs, and NAT GW)
+        - 1 Public Subnet (no public ips are to be created here, strickly for the internet gateway)
         - 2 different AZs
     - Route Table
         - Route to the peered VPC(s)
