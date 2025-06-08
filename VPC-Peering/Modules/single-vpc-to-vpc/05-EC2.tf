@@ -4,7 +4,7 @@ resource "aws_instance" "source_instance" {
   ami           = var.requester_ami_id # use the ami from your specific region
   instance_type = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-  subnet_id     = aws_subnet.requester_subnet1.id
+  subnet_id     = aws_subnet.requester_subnet1.id ## Ensure this is the private subnet, for SSM access
   vpc_security_group_ids = [aws_security_group.requester_sg.id]
   metadata_options {
      http_tokens = "required"
@@ -25,7 +25,7 @@ resource "aws_instance" "acceptor_instance" {
   ami           = var.acceptor_ami_id # use the ami from your specific region
   instance_type = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-  subnet_id     = aws_subnet.acceptor_subnet1.id
+  subnet_id     = aws_subnet.acceptor_subnet1.id ## Ensure this is the private subnet, for SSM access
   vpc_security_group_ids = [aws_security_group.acceptor_sg.id]
   metadata_options {
      http_tokens = "required"
