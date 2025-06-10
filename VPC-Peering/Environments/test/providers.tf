@@ -11,10 +11,10 @@ terraform {
 
 provider "aws" {
   alias  = "us-east"
-  region = var.source_region
+  region = var.requestor_vpc_region
 }
 
 provider "aws" {
   alias  = "us-west"
-  region = var.dest_region
+  region = var.acceptor_region
 }

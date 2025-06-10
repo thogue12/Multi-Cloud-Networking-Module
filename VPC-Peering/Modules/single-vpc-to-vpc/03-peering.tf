@@ -6,16 +6,16 @@ data "aws_caller_identity" "peer" {
 resource "aws_vpc_peering_connection" "this_connection" {
   provider = aws.us-east
   peer_owner_id = data.aws_caller_identity.peer.account_id
-  peer_vpc_id   = aws_vpc.destination_vpc.id  ## Accepter VPC ID
-  vpc_id        = aws_vpc.source_vpc.id  ## Requester VPC ID
+  peer_vpc_id   = aws_vpc.acceptor_vpc.id  ## Accepter VPC ID
+  vpc_id        = aws_vpc.requester_vpc.id  ## Requester VPC ID
   auto_accept   = false
-  peer_region   = var.dest_region  ## Destination VPC region
+  peer_region   = var.acceptor_region  ## Destination VPC region
 
   tags = {
     Name = "east -> west"
   }
 
-  depends_on = [ aws_vpc.source_vpc, aws_vpc.destination_vpc ]
+  depends_on = [ aws_vpc.requester_vpc, aws_vpc.acceptor_vpc ]
 }
 
 
@@ -32,5 +32,5 @@ resource "aws_vpc_peering_connection_accepter" "dest_peer" {
     Name = "west -> east"
   }
 
-  depends_on = [ aws_vpc.source_vpc, aws_vpc.destination_vpc ]
+  depends_on = [ aws_vpc.requester_vpc, aws_vpc.acceptor_vpc ]
 }
