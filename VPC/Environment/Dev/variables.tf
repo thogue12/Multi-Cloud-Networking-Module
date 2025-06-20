@@ -44,6 +44,13 @@ variable "map_public_ip_on_launch" {
 
 }
 
+variable "map_public_ip_on_private_subs" {
+  description = "Map public IP on launch for public subnets"
+  type        = bool
+  default     = false
+
+}
+
 ######### private subnets #########
 variable "private_subnets_cidr_blocks" {
   description = "List of private subnets CIDR blocks"
@@ -70,5 +77,7 @@ variable "tags" {
 variable "name" {
   description = "universal name"
   type        = string
-  default = ""
+  default     = ""
 }
+
+ 
