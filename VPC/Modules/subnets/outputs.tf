@@ -1,33 +1,29 @@
+
 output "public_subnets_cidr_blocks" {
   description = "values of public subnets CIDR blocks"
-  value       = aws_subnet.public_subnets[*].cidr_block
+  value       = {for k, v in aws_subnet.public_subnets : k => v.cidr_block}
 }
 
 output "private_subnets_cidr_blocks" {
   description = "values of private subnets CIDR blocks"
-  value       = aws_subnet.private_subnets[*].cidr_block
-}
-
-output "create_public_subnets" {
-  description = "value of create_public_subnets local variable"
-  value       = local.create_public_subnets
-}
-
-output "create_private_subnets" {
-  description = "value of create_private_subnets local variable"
-  value       = local.create_private_subnets
+  value       = {for k, v in aws_subnet.private_subnets : k => v.cidr_block}
 }
 
 output "public_subnets" {
   description = "List of IDs of public subnets"
-  value       = aws_subnet.public_subnets[*].id
+  value       = {for k, v in aws_subnet.public_subnets : k => v.id}
 }
 
 output "private_subnets" {
   description = "List of IDs of private subnets"
-  value       = aws_subnet.private_subnets[*].id
+  value       = {for k, v in aws_subnet.private_subnets : k => v.id}
 }
 output "public_subnet_arns" {
   description = "List of ARNs of public subnets"
-  value       = aws_subnet.public_subnets[*].arn
+  value       = {for k, v in aws_subnet.public_subnets : k => v.arn}
+}
+
+output "private_subnets_arns" {
+  description = "List of ARNs of private subnets"
+  value       = {for k, v in aws_subnet.private_subnets : k => v.arn}
 }

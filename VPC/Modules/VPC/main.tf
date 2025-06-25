@@ -3,11 +3,13 @@
 ##########################################################################
 
 
+
 resource "aws_vpc" "this_vpc" {
-  # count = var.create_vpc ? 1: 0
-  cidr_block           = var.vpc_cidr
-  enable_dns_support   = var.enable_dns_support
-  enable_dns_hostnames = var.enable_dns_hostnames
+  for_each             = var.vpc_attributes
+  cidr_block           = each.value.cidr_block
+  enable_dns_support   = each.value.enable_dns_support
+  enable_dns_hostnames = each.value.enable_dns_hostnames
+  region               = each.value.region
 
   tags = merge(
     {
@@ -16,3 +18,4 @@ resource "aws_vpc" "this_vpc" {
     var.tags
   )
 }
+
