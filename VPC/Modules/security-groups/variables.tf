@@ -4,12 +4,6 @@ variable "name" {
   
 }
 
-# variable "security_group_id" {
-#   description = "Security Group ID"
-#   default     = aws_security_group.this_sg.id
-  
-# }
-
 
 variable "tags" {
   description = "Tags for the resources"

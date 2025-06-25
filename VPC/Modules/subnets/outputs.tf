@@ -1,8 +1,10 @@
 
+###
 output "public_subnets_cidr_blocks" {
   description = "values of public subnets CIDR blocks"
   value       = {for k, v in aws_subnet.public_subnets : k => v.cidr_block}
 }
+
 
 output "private_subnets_cidr_blocks" {
   description = "values of private subnets CIDR blocks"
