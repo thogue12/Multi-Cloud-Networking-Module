@@ -4,6 +4,6 @@ terraform {
     storage_account_name = "tfstatefile84"
     container_name       = "testtfstate"
     key                  = "multiclonetwork.terraform.tfstate"
-    subscription_id      = "61fbcac7-2f66-43f1-aca9-bfbab5b91195"
+    subscription_id = ""
   }
 }
