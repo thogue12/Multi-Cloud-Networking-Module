@@ -25,7 +25,10 @@ resource aws_route "public_routes" {
 
   route_table_id         = each.value.route_table_id
   destination_cidr_block = each.value.destination_cidr_block
-  gateway_id             = each.value.gateway_id
+  gateway_id                = lookup(each.value, "gateway_id", null)
+  nat_gateway_id            = lookup(each.value, "nat_gateway_id", null)
+  vpc_peering_connection_id = lookup(each.value, "vpc_peering_connection_id", null)
+  transit_gateway_id        = lookup(each.value, "transit_gateway_id", null)
  
  depends_on              = [aws_route_table.public  ]
 
@@ -61,7 +64,11 @@ resource "aws_route" "private_routes" {
   for_each       = var.private_routes
   route_table_id = each.value.route_table_id
   destination_cidr_block = each.value.destination_cidr_block
-  nat_gateway_id = each.value.nat_gateway_id
+  gateway_id                = lookup(each.value, "gateway_id", null)
+  nat_gateway_id            = lookup(each.value, "nat_gateway_id", null)
+  vpc_peering_connection_id = lookup(each.value, "vpc_peering_connection_id", null)
+  transit_gateway_id        = lookup(each.value, "transit_gateway_id", null)
+
 
   
   depends_on = [aws_route_table.private  ]

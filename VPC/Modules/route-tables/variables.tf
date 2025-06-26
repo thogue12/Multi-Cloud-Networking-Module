@@ -38,7 +38,7 @@ variable "public_routes" {
     destination_cidr_block = string
     gateway_id = optional(string, null)
     nat_gateway_id = optional(string, null)
-    peering_connection_id = optional(string, null)
+    vpc_peering_connection_id = optional(string, null)
     transit_gateway_id = optional(string, null)
 
   }))
@@ -94,7 +94,7 @@ variable "private_routes" {
     destination_cidr_block = string
     gateway_id = optional(string, null)
     nat_gateway_id = optional(string, null)
-    peering_connection_id = optional(string, null)
+    vpc_peering_connection_id = optional(string, null)
     transit_gateway_id = optional(string, null)
 
   }))
