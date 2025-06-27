@@ -11,10 +11,10 @@ output "vpc_cidr" {
   
 }
 
-output "name" {
-  description = "VPC ARN"
-  value = var.name
-}
+# output "name" {
+#   description = "VPC ARN"
+#   value = var.name
+# }
 
 
 

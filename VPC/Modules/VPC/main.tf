@@ -14,8 +14,8 @@ resource "aws_vpc" "this_vpc" {
 
   tags = merge(
     {
-      Name = "${var.name}-vpc"
-    },
+       Name = lookup(each.value, "name", "-${each.key}") 
+          },
     var.tags
   )
 }

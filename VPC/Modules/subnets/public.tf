@@ -11,6 +11,7 @@
 
 resource "aws_subnet" "public_subnets" {
   for_each = var.public_subnets
+  # provider = each.value.region == "us-east-1" ? aws.us-east : aws.us-west
   vpc_id = each.value.vpc_id
   cidr_block = each.value.cidr_block[0]
   availability_zone = each.value.availability_zone[0]

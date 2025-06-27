@@ -1,10 +1,8 @@
 
+# variable "name" {
+#   type = string
+# }
 
-variable "name" {
-  description = "Global name for all resources"
-  type = string
-  default = ""
-}
 
 
 variable "tags" {
@@ -20,6 +18,7 @@ variable "vpc_attributes" {
     enable_dns_support   = bool
     enable_dns_hostnames = bool
     region               = string
+     name =              string
   }))
   
 }
