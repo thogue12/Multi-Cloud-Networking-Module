@@ -4,6 +4,6 @@ terraform {
     storage_account_name = "tfstatefile84"
     container_name       = "testtfstate"
     key                  = "vnet-peering.terraform.tfstate"
-    subscription_id      = ""
+    # subscription_id      = ""
   }
 }
