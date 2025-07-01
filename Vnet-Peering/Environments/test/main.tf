@@ -96,6 +96,71 @@ module "subnets" {
   }
 
 }
+########################################################################################
+# Linux VM
+########################################################################################
+
+module "linux_vm" {
+  source = "../../../virtual-machines/Azure/Linux-VM"
+
+  network_interface = {
+    nic1 = {
+      name                = "linux-nic1"
+      location            = local.location
+      resource_group_name = module.resource_group.resource_group_name["requester_rg"]
+      ip_configuration = {
+        name                          = "internal"
+        subnet_id                     = module.subnets.subnet_id["requester_pub_sub1"]
+        private_ip_address_allocation = "Dynamic"
+      }
+    }
+    nic2 = {
+      name                = "linux-nic2"
+      location            = local.location
+      resource_group_name = module.resource_group.resource_group_name["accepter_rg"]
+      ip_configuration = {
+        name                          = "internal"
+        subnet_id                     = module.subnets.subnet_id["accepter_pub_sub1"]
+        private_ip_address_allocation = "Dynamic"
+      }
+    }
+  }
+  linux_vm = {
+    Vm1 = {
+      name                  = "Linux-VM1"
+      resource_group_name   = module.resource_group.resource_group_name["requester_rg"]
+      location              = local.location
+      size                  = "Standard_F2"
+      admin_username        = "adminuser"
+      network_interface_ids = [module.linux_vm.network_interface_ids["nic1"]]
+
+       os_disk = {
+        caching              = "ReadWrite"
+        storage_account_type = "Standard_LRS"
+
+    }
+
+    }
+
+    Vm2 = {
+      name                  = "Linux-VM2"
+      resource_group_name   = module.resource_group.resource_group_name["accepter_rg"]
+      location              = local.location
+      size                  = "Standard_F2"
+      admin_username        = "adminuser"
+      network_interface_ids = [module.linux_vm.network_interface_ids["nic2"]]
+
+      os_disk = {
+        caching              = "ReadWrite"
+        storage_account_type = "Standard_LRS"
+
+    }
+
+
+    }
+
+  }
+}
 
 ##############################################################################################################
 # Virtual Network Peering
