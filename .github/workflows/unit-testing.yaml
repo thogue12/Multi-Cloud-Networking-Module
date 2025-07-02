@@ -7,7 +7,7 @@ permissions:
   actions: read
   contents: read
   security-events: write
-
+####
 jobs:
   tf-formatting:
     name: 'Terraform Formatting'
@@ -34,7 +34,7 @@ jobs:
         run: |
           tflint --init
           tflint
-
+####
   trivy:
     name: Trivy Vulnerability Scan
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
           format: 'sarif'
           output: 'trivy-results.sarif'
           ignore-unfixed: true
-
+####
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
         with:
