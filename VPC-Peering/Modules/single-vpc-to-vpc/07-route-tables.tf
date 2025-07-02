@@ -76,6 +76,10 @@ resource "aws_route_table" "this_pub_rt" {
     Name = "${var.acceptor_vpc_name}-public-route-table"
   }
   depends_on = [ aws_vpc.acceptor_vpc ]
+<<<<<<< HEAD
+}
+=======
 }
 
 
+>>>>>>> main
