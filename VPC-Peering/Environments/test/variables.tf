@@ -1,3 +1,4 @@
+
 variable "environment" {
   description = "The environment for the VPC (e.g., dev, staging, prod)"
   type        = string
@@ -41,6 +42,11 @@ variable "requester_subnet1_cidr" {
   
 } 
 
+<<<<<<< HEAD
+=======
+}
+
+>>>>>>> main
 variable "requester_subnet1_name" {
   description = "Name for the first destination subnet"
   type        = string
@@ -97,6 +103,11 @@ variable "acceptor_subnet1_cidr" {
   
 } 
 
+<<<<<<< HEAD
+=======
+}
+
+>>>>>>> main
 variable "acceptor_subnet1_name" {
   description = "Name for the first destination subnet"
   type        = string
@@ -117,7 +128,11 @@ variable "acceptor_subnet2_name" {
 
 variable "acceptor_pub_sub_cidr" {
   description = "CIDR block for the public subnet"
+<<<<<<< HEAD
   type        = string 
+=======
+  type        = string
+>>>>>>> main
 }
 
 variable "acceptor_subnet2_cidr" {
@@ -144,7 +159,16 @@ variable "map_public_ip_on_launch" {
   default     = false
   
 }
+variable "map_public_ip_on_launch" {
+  description = "Whether to map public IPs on launch for subnets, defaults to false"
+  type        = bool
+  default     = false
 
+<<<<<<< HEAD
+=======
+}
+
+>>>>>>> main
 ### EC2 Instance Variables ###
 
 variable "requester_ami_id" {
@@ -160,4 +184,12 @@ variable "instance_type" {
   description = "Instance type for the EC2 instances in both VPCs"
   type        = string
   default     = "t2.micro"
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+
+>>>>>>> main

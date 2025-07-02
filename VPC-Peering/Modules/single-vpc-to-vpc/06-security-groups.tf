@@ -66,4 +66,8 @@ resource "aws_vpc_security_group_egress_rule" "dest_egress" {
   ip_protocol = "-1"
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

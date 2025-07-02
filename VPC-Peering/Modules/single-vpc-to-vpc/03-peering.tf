@@ -33,4 +33,8 @@ resource "aws_vpc_peering_connection_accepter" "dest_peer" {
   }
 
   depends_on = [ aws_vpc.requester_vpc, aws_vpc.acceptor_vpc ]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

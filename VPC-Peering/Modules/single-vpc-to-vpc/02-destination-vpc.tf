@@ -47,4 +47,11 @@ resource "aws_internet_gateway" "acceptor_igw" {
   tags = {
     Name = "${var.acceptor_vpc_name}-igw"
   }
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+>>>>>>> main
