@@ -94,17 +94,17 @@ module "route-tables" {
     }
   }
   public_route_table_associations = {
-    pub_rt1_subnet1 = {                        # unique key
+    pub_rt1_subnet1 = { # unique key
       route_table_id = module.route-tables.public_route_table_id["public_rt1"]
       subnet_id      = module.subnets.public_subnets["pub_subnet_1"]
-  }
-  pub_rt1_subnet2 = {
-    route_table_id = module.route-tables.public_route_table_id["public_rt1"]
-    subnet_id      = module.subnets.public_subnets["pub_subnet_2"]
-  }
-      
     }
-   # Accessing the first public subnet
+    pub_rt1_subnet2 = {
+      route_table_id = module.route-tables.public_route_table_id["public_rt1"]
+      subnet_id      = module.subnets.public_subnets["pub_subnet_2"]
+    }
+
+  }
+  # Accessing the first public subnet
 
   private_route_tables = {
     private_rt1 = {
@@ -122,15 +122,15 @@ module "route-tables" {
   }
 
   private_route_table_associations = {
-    priv_rt1_subnet1 = {                        # unique key
+    priv_rt1_subnet1 = { # unique key
       route_table_id = module.route-tables.private_route_table_id["private_rt1"]
       subnet_id      = module.subnets.private_subnets["priv_subnet_1"]
+    }
+    priv_rt1_subnet2 = {
+      route_table_id = module.route-tables.private_route_table_id["private_rt1"]
+      subnet_id      = module.subnets.private_subnets["priv_subnet_2"]
+    }
   }
-  priv_rt1_subnet2 = {
-    route_table_id = module.route-tables.private_route_table_id["private_rt1"]
-    subnet_id      = module.subnets.private_subnets["priv_subnet_2"]
-  }
-}
 }
 
 
