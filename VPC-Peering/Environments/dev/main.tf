@@ -190,12 +190,12 @@ module "route-tables" {
 
     }
 
-    route-accepter-igw = {
-      vpc_id                 = module.vpc.vpc_id["accepter_vpc"]
-      route_table_id         = module.route-tables.public_route_table_id["accepter_pub_rt"]
-      gateway_id             = module.igw-nat.igw_id["accepter-igw"]
-      destination_cidr_block = "0.0.0.0/0"
-    }
+      route-accepter-igw = {
+        vpc_id                 = module.vpc.vpc_id["accepter_vpc"]
+        route_table_id         = module.route-tables.public_route_table_id["accepter_pub_rt"]
+        gateway_id             = module.igw-nat.igw_id["accepter-igw"]
+        destination_cidr_block = "0.0.0.0/0"
+      }
   }
   ###############################################################################
   # Private Routes
