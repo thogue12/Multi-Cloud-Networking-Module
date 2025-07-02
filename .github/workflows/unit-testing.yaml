@@ -29,7 +29,7 @@ jobs:
 
       - name: 'Terraform validate'
         run: terraform validate
-  ##      
+  ###      
   tflint:
      name: 'TFlint'
      runs-on: ubuntu-latest
@@ -37,9 +37,7 @@ jobs:
       - name: 'Checkout GitHub Repo'
         uses: actions/checkout@v4
       - name: 'Install TFLint'
-        run: |
-            curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
-            echo "$HOME/.tflint/bin" >> $GITHUB_PATH
+        uses: terraform-linters/setup-tflint@v4
       - name: 'TFLint'
         run: |
           tflint --init
