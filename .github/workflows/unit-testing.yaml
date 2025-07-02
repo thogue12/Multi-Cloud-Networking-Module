@@ -1,0 +1,101 @@
+name: Unit Testing
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+####
+jobs:
+  tf-formatting:
+    name: 'Terraform Formatting'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout GitHub Repo'
+        uses: actions/checkout@v4
+
+      - name: 'Set up Terraform'
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 'latest'
+
+      - name: 'Terraform init'
+        run: terraform init
+
+      - name: 'Terraform Format'
+        run: terraform fmt -check
+
+      - name: 'Terraform validate'
+        run: terraform validate
+
+      - name: 'TFLint'
+        run: |
+          tflint --init
+          tflint
+####
+  trivy:
+    name: Trivy Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: 'fs'
+          severity: 'CRITICAL'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          ignore-unfixed: true
+####
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  iac_scan:
+    name: IaC Scan
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner in IaC mode
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: 'config'
+          hide-progress: false
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          exit-code: '1'
+          severity: 'CRITICAL'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  tfsec:
+    name: 'tfsec'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: 'Install Tfsec'
+        uses: aquasecurity/tfsec-sarif-action@21ded20e8ca120cd9d3d6ab04ef746477542a608
+        with:
+          sarif_file: tfsec.sarif
+#####
+  checkov:
+    name: Run Checkov
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Run Checkov'
+        uses: bridgecrewio/checkov-action@v12
+        with:
+          output_format: cli,sarif
+          output_file_path: console,results.sarif

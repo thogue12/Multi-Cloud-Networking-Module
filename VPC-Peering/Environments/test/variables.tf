@@ -2,7 +2,7 @@
 variable "environment" {
   description = "The environment for the VPC (e.g., dev, staging, prod)"
   type        = string
-
+  
 }
 
 variable "requestor_vpc_region" {
@@ -13,7 +13,7 @@ variable "requestor_vpc_region" {
 variable "acceptor_region" {
   description = "The AWS region for the destination VPC"
   type        = string
-
+  
 }
 
 
@@ -23,7 +23,7 @@ variable "acceptor_region" {
 variable "requester_vpc_name" {
   description = "Name for the source VPC"
   type        = string
-
+  
 }
 
 variable "requester_vpc_cidr" {
@@ -33,50 +33,55 @@ variable "requester_vpc_cidr" {
 
 variable "requester_vpc_pub_sub_cidr" {
   description = "CIDR block for the public subnet"
-  type        = string
+  type        = string 
 }
 
 variable "requester_subnet1_cidr" {
   description = "CIDR block for the first destination subnet"
   type        = string
+  
+} 
 
+<<<<<<< HEAD
+=======
 }
 
+>>>>>>> main
 variable "requester_subnet1_name" {
   description = "Name for the first destination subnet"
   type        = string
-
+  
 }
 
 variable "requester_subnet1_az" {
   description = "Availability Zone for the first destination subnet"
-  type        = string
-
+  type        = string  
+  
 }
 
 variable "requester_subnet2_name" {
   description = "Name for the second destination subnet"
   type        = string
-
+  
 }
 
 variable "requester_subnet2_cidr" {
   description = "CIDR block for the second destination subnet"
   type        = string
-
+  
 }
 
 
 variable "requester_subnet2_az" {
   description = "Availability Zone for the second destination subnet"
   type        = string
-
+  
 }
 
 variable "requester_rt_name" {
   description = "Name for the destination route table"
-  type        = string
-
+  type        = string  
+  
 }
 
 ### Acceptor VPC Variables ###
@@ -84,7 +89,7 @@ variable "requester_rt_name" {
 variable "acceptor_vpc_name" {
   description = "Name for the source VPC"
   type        = string
-
+  
 }
 variable "acceptor_cidr" {
   description = "CIDR block for the destination VPC"
@@ -95,57 +100,75 @@ variable "acceptor_cidr" {
 variable "acceptor_subnet1_cidr" {
   description = "CIDR block for the first destination subnet"
   type        = string
+  
+} 
 
+<<<<<<< HEAD
+=======
 }
 
+>>>>>>> main
 variable "acceptor_subnet1_name" {
   description = "Name for the first destination subnet"
   type        = string
-
+  
 }
 
 variable "acceptor_subnet1_az" {
   description = "Availability Zone for the first destination subnet"
-  type        = string
-
+  type        = string  
+  
 }
 
 variable "acceptor_subnet2_name" {
   description = "Name for the second destination subnet"
   type        = string
-
+  
 }
 
 variable "acceptor_pub_sub_cidr" {
   description = "CIDR block for the public subnet"
+<<<<<<< HEAD
+  type        = string 
+=======
   type        = string
+>>>>>>> main
 }
 
 variable "acceptor_subnet2_cidr" {
   description = "CIDR block for the second destination subnet"
   type        = string
-
+  
 }
 
 
 variable "acceptor_subnet2_az" {
   description = "Availability Zone for the second destination subnet"
   type        = string
-
+  
 }
 
 variable "acceptor_rt_name" {
   description = "Name for the destination route table"
-  type        = string
-
+  type        = string  
+  
+}
+variable "map_public_ip_on_launch" {
+  description = "Whether to map public IPs on launch for subnets, defaults to false"
+  type        = bool
+  default     = false
+  
 }
 variable "map_public_ip_on_launch" {
   description = "Whether to map public IPs on launch for subnets, defaults to false"
   type        = bool
   default     = false
 
+<<<<<<< HEAD
+=======
 }
 
+>>>>>>> main
 ### EC2 Instance Variables ###
 
 variable "requester_ami_id" {
@@ -161,8 +184,12 @@ variable "instance_type" {
   description = "Instance type for the EC2 instances in both VPCs"
   type        = string
   default     = "t2.micro"
+<<<<<<< HEAD
+}
+=======
 }
 
 
 
 
+>>>>>>> main

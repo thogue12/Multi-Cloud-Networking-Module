@@ -39,4 +39,8 @@ resource "aws_instance" "acceptor_instance" {
   }
 
   depends_on = [aws_vpc.acceptor_vpc, aws_subnet.acceptor_subnet1]
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main
